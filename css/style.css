@@ -1,1 +1,153 @@
 /* Add the website's styles here. */
+
+/* Basic reset and layout */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #0f1724, #071023);
+}
+
+/* Centered semi-transparent rounded card */
+.card-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    width: 100%;
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 2rem;
+    border-radius: 16px;
+    max-width: 900px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+    backdrop-filter: blur(6px);
+}
+
+header,
+footer {
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+header h1 {
+    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+}
+
+.lead {
+    color: #d1d5db;
+    margin-top: 0;
+}
+
+nav {
+    margin-top: 0.75rem;
+}
+
+nav a {
+    color: #9ca3af;
+    text-decoration: none;
+    margin-right: 1rem;
+    font-size: 0.95rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.panel {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+@media (max-width: 420px) {
+    .card {
+        padding: 1rem;
+        border-radius: 12px;
+    }
+
+}
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background-image: url("../images/bgaero_upscayl_3x_upscayl-standard-4x.png");
+    background-size: cover;      
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Hero Banner */
+.banner {
+    width: 100%;
+    min-height: 350px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Banner text */
+.banner-content {
+    position: relative;
+    z-index: 1;
+
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    max-width: 800px;
+}
+
+.banner h1 {
+    font-size: clamp(3rem, 7vw, 5rem);
+    margin: 0;
+    font-weight: 700;
+}
+
+.banner p {
+    font-size: 1.2rem;
+    color: #d1d5db;
+    margin: 1rem 0 2rem;
+}
+
+/* Button */
+.banner-button {
+    display: inline-block;
+    padding: 12px 30px;
+
+    background: rgba(255,255,255,0.15);
+    color: white;
+
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 12px;
+
+    text-decoration: none;
+    font-weight: 600;
+
+    backdrop-filter: blur(8px);
+    transition: 0.3s;
+}
+
+.banner-button:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+}
