@@ -1,5 +1,3 @@
-<!--  This file contains the basic structure used for every page in the Site  -->
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,10 +6,11 @@
 
     <title>Interactive Educational Website</title>
 
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/script.js" defer></script>
   </head>
   <body>
+
     <svg style="display: none">
       <filter
         id="de-glass-distortion"
@@ -77,21 +76,52 @@
     <div class="bubble bubble12"></div>
     <div class="bubble bubble13"></div>
 
-    <!-- Navigation -->
+    <!-- Navigation Bar -->
     <nav class="navbar">
       <div class="brand">
-        <a href="index.html" class="logo">SudoSchool</a>
+        <a href="../index.html" class="logo">SudoSchool</a>
         <p class="nav-subtext">sudo rm -rf --no-preserve-root /</p>
       </div>
       <div class="nav-links">
-        <a href="pages/Lessons.html">Lessons</a>
-        <a href="pages/Challenges.html">Challenges</a>
-        <a href="pages/About.html">About</a>
+        <a href="Lessons.html">Lessons</a>
+        <a href="Challenges.html">Challenges</a>
+        <a href="About.html">About</a>
       </div>
     </nav>
 
+    <!-- Container -->
+
     <div class="container">
-      <main class="card" role="main"></main>
+      <main class="card" role="main">
+        <section class="mascot">
+          <div class="mascot-text">
+            <h2>SudoSchool</h2>
+            <p class="subtitle">
+              Master the Linux command line with interactive lessons and
+              challenges.
+            </p>
+            <p class="description">
+              Start your journey into Linux today. Learn through short,
+              interactive lessons, guided practice, and real-world challenges
+              that run entirely in your browser &mdash; no virtual machines, no
+              downloads, and no complicated setup.
+            </p>
+
+            <p class="description">
+              Explore topics like navigating the command line, managing files
+              and permissions, working with users, running processes, installing
+              software, writing shell scripts, and basic networking. Every
+              lesson includes a live terminal where you can try real Linux
+              commands, experiment, make mistakes, and learn by doing &mdash;
+              just like you would on a real Linux system.
+            </p>
+            <a href="#lessons" class="banner-button">Get Started</a>
+          </div>
+          <div class="mascot-art">
+            <img src="../images/tux.svg" alt="Tux, the Linux mascot" />
+          </div>
+        </section>
+      </main>
     </div>
   </body>
 </html>
