@@ -658,3 +658,18 @@ footer {
     font-size: 0.9rem;
   }
 }
+
+#terminal {
+    width: 50%;
+    height: 500px;
+    margin-top: 45px;
+    margin-left: -110px;
+    margin-right: auto;
+    align-self: flex-start;
+}
+
+@media (max-width: 800px) {
+    #terminal {
+        width: 100%;
+    }
+}
