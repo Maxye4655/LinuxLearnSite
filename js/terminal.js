@@ -23,7 +23,7 @@ $('#terminal').terminal(function(command) {
         this.echo(`bash: ${command}: command not found`);
     }
 }, {
-    greetings: 'Welcome to SudoSchool Linux!\nType "help" to get started.',
+    greetings: 'Type "help" to get started.',
     prompt: 'student@sudo-school:~$ ',
     height: '100%'
 });
