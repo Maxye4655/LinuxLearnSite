@@ -1,18 +1,34 @@
-
-
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Challenges | SudoSchool</title>
-
     <link rel="stylesheet" href="../css/style.css" />
-    <script src="../js/script.js" defer></script>
+
+<!-- jQuery Terminal -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.46.2/css/jquery.terminal.min.css"
+/>
+
+<!-- jQuery -->
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+  defer
+></script>
+
+<!-- jQuery Terminal -->
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.46.2/js/jquery.terminal.min.js"
+  defer
+></script>
+
+<!-- Your scripts -->
+<script src="../js/script.js" defer></script>
+<script src="../js/terminal.js" defer></script>
   </head>
+
   <body>
 
+    <!-- Glass distortion filter -->
     <svg style="display: none">
       <filter
         id="de-glass-distortion"
@@ -33,8 +49,9 @@
           preserveAspectRatio="none"
           result="displacementMap"
         />
+
         <feImage
-          href="data:image/png;base64"
+          href="data:image/png;base64,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"
           x="0"
           y="0"
           width="1"
@@ -42,7 +59,13 @@
           preserveAspectRatio="none"
           result="specularMap"
         />
-        <feGaussianBlur in="SourceGraphic" stdDeviation="0" result="blurred" />
+
+        <feGaussianBlur
+          in="SourceGraphic"
+          stdDeviation="0"
+          result="blurred"
+        />
+
         <feDisplacementMap
           in="blurred"
           in2="displacementMap"
@@ -51,10 +74,19 @@
           yChannelSelector="G"
           result="refracted"
         />
-        <feComponentTransfer in="specularMap" result="specularAlpha">
+
+        <feComponentTransfer
+          in="specularMap"
+          result="specularAlpha"
+        >
           <feFuncA type="linear" slope="0.1" />
         </feComponentTransfer>
-        <feBlend in="specularAlpha" in2="refracted" mode="screen" />
+
+        <feBlend
+          in="specularAlpha"
+          in2="refracted"
+          mode="screen"
+        />
       </filter>
     </svg>
 
@@ -65,6 +97,7 @@
     <div class="bubble bubble1"></div>
     <div class="bubble bubble2"></div>
     <div class="bubble bubble3"></div>
+
     <!-- Small Bubbles -->
     <div class="bubble bubble4"></div>
     <div class="bubble bubble5"></div>
@@ -73,6 +106,7 @@
     <div class="bubble bubble8"></div>
     <div class="bubble bubble9"></div>
     <div class="bubble bubble10"></div>
+
     <!-- Extra Glass Spheres -->
     <div class="bubble bubble11"></div>
     <div class="bubble bubble12"></div>
@@ -84,17 +118,56 @@
         <a href="../pages/Homepage.html" class="logo">SudoSchool</a>
         <p class="nav-subtext">sudo rm -rf --no-preserve-root /</p>
       </div>
+
       <div class="nav-links">
-        <a href="LessonLanding.html">Lessons</a>
+        <a href="LessonsLanding.html">Lessons</a>
         <a href="Challenges.html">Challenges</a>
         <a href="About.html">About</a>
       </div>
     </nav>
 
+    <!-- Main Content -->
     <div class="container">
       <main class="card" role="main">
-      <h2>Challenges</h2>
+
+        <h2>Lessons</h2>
+
+        <p>
+          Please select a lesson to get started:
+        </p>
+
+        <hr class="Divider">
+
+        <div class="subcards">
+          <main class="subcard" role="Lesson1">
+            
+          </main>
+
+          <main class="subcard" role="Lesson2">
+
+          </main>
+
+          <main class="subcard" role="Lesson3">
+
+          </main>
+
+          <main class="subcard" role="Lesson4">
+
+          </main>
+
+          <main class="subcard" role="Lesson3">
+
+          </main>
+
+          <main class="subcard" role="Lesson4">
+
+          </main>
+        </div>
+
       </main>
     </div>
+
   </body>
 </html>
+
+
