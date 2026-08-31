@@ -402,7 +402,8 @@ body::before {
 .subcard {
     position: relative;
     z-index: 10;
-
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.25s ease;
     width: auto;
     min-height: 300px;
 
@@ -469,6 +470,11 @@ body::before {
     0 20px 60px rgba(0, 0, 0, 0.45);
 }
 
+.subcard:hover {
+    transform: scale(1.03);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+}
+
 .mascot {
   flex: 1;
   display: grid;
@@ -520,6 +526,8 @@ p {
   display: block;
   line-height: 1.7;
   color: #fff;
+  margin-top: 10px;
+  margin-bottom: 10px;
   text-shadow:
     0 0 3px rgba(0, 0, 0, 0.9),
     0 2px 6px rgba(0, 0, 0, 0.95),
@@ -756,14 +764,7 @@ footer {
   }
 }
 
-#terminal {
-    width: 50%;
-    height: 500px;
-    margin-top: 45px;
-    margin-left: -110px;
-    margin-right: auto;
-    align-self: flex-start;
-}
+
 
 @media (max-width: 800px) {
     #terminal {
@@ -776,4 +777,228 @@ footer {
   height: 1px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   margin: 35px 0;
+}
+
+.lesson-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: stretch;
+    flex: 1;
+}
+
+.lesson-terminal {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.lesson-text {
+    min-width: 0;
+}
+
+.lesson-text-col {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.lesson-text-nav {
+    margin-top: 24px;
+}
+
+.lesson-text-nav .btn {
+    padding: 10px 26px;
+}
+
+#terminal {
+    width: 100%;
+    flex: 1;
+    min-height: 500px;
+    margin-top: 10px;
+}
+
+/* Lesson progress bar */
+
+.lesson-progress {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.lesson-progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  margin-bottom: 8px;
+  text-shadow:
+    0 0 3px rgba(0, 0, 0, 0.9),
+    0 2px 6px rgba(0, 0, 0, 0.95);
+}
+
+.lesson-progress-bar {
+  position: relative;
+  width: 100%;
+  height: 14px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 3px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.lesson-progress-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: url(#de-glass-distortion);
+  -webkit-backdrop-filter: url(#de-glass-distortion);
+  filter: url(#de-glass-distortion);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.03) 40%,
+    rgba(255, 255, 255, 0.08)
+  );
+}
+
+.lesson-progress-bar > div {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgba(155, 182, 237, 0.6),
+    rgba(13, 68, 206, 0.6)
+  );
+  box-shadow: 0 0 18px rgba(0, 220, 255, 0.5);
+  transition: width 0.4s ease;
+}
+
+/* Lesson sections */
+
+.lesson-section {
+  display: none;
+}
+
+.lesson-section.is-active {
+  display: block;
+  animation: lessonFade 0.4s ease;
+}
+
+@keyframes lessonFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Lesson card: fill viewport so the terminal stretches to the bottom */
+
+.lesson-card {
+  min-height: calc(100vh - 260px);
+}
+
+.lesson-content {
+    flex: 1;
+    align-items: stretch;
+}
+
+/* Lesson controls */
+
+.lesson-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 30px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  text-shadow:
+    0 0 3px rgba(0, 0, 0, 0.9),
+    0 2px 6px rgba(0, 0, 0, 0.95);
+  cursor: url("../images/Link Select.cur"), pointer;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: url(#de-glass-distortion);
+  -webkit-backdrop-filter: url(#de-glass-distortion);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.35),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.35),
+    0 20px 60px rgba(0, 0, 0, 0.45);
+  transition: 0.25s ease;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-3px);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    rgba(12, 52, 231, 0.55),
+    rgba(0, 13, 255, 0.4)
+  );
+  border-color: rgba(0, 220, 255, 0.5);
+}
+
+.btn-primary.is-ready:hover {
+  box-shadow: 0 0 24px rgba(0, 220, 255, 0.55);
+}
+
+.btn-primary:not(.is-ready) {
+  opacity: 0.45;
+  cursor: default;
+  filter: grayscale(0.4);
+}
+
+.lesson-controls .btn-primary:not(.is-ready):hover {
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.btn-primary.is-ready {
+  background: linear-gradient(
+    135deg,
+    rgba(6, 65, 213, 0.55),
+    rgba(0, 143, 252, 0.4)
+  );
+  border-color: rgba(0, 230, 140, 0.5);
+}
+
+@media (max-width: 600px) {
+  .lesson-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }

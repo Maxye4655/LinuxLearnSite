@@ -22,8 +22,9 @@
 ></script>
 
 <!-- Your scripts -->
-<script src="../js/script.js" defer></script>
-<script src="../js/terminal.js" defer></script>
+<script src="../../js/script.js" defer></script>
+<script src="../../js/terminal.js" defer></script>
+<script src="../../js/lesson.js" defer></script>
   </head>
 
   <body>
@@ -128,13 +129,91 @@
 
     <!-- Main Content -->
     <div class="container">
-      <main class="card" role="main">
+      <main class="card lesson-card" role="main">
 
-        <h2>Lessons</h2>
+        <h2>Lesson 1 - What is Linux?</h2>
 
-        <!-- Linux Terminal -->
-        <div id="terminal"></div>
+        <div class="lesson-progress" id="lessonProgress">
+          <div class="lesson-progress-label">
+            <span>Progress</span>
+            <span id="progressValue">0%</span>
+          </div>
+          <div class="lesson-progress-bar">
+            <div id="progressBarFill"></div>
+          </div>
+        </div>
 
+          <hr class="Divider">
+          <div class="lesson-content">
+            <section class="lesson-terminal">
+              <h3>Interactive Terminal Sim:</h3>
+              <div id="terminal"></div>
+            </section>
+
+            <div class="lesson-text-col">
+              <section class="lesson-text lesson-section" data-step="1">
+                <h3>Welcome to Linux</h3>
+                <p>
+                  Linux is one of the most important pieces of software in the modern
+                  world. It powers everything from smartphones and web servers to
+                  supercomputers, routers, smart TVs and embedded devices.
+                </p>
+
+                <p>
+                  But what exactly is Linux? And why is it used in so many different
+                  places? In this lesson, you will find out.
+                </p>
+              </section>
+
+              <section class="lesson-text lesson-section" data-step="2">
+                <h3>The Linux Terminal</h3>
+                <p>
+                  The Linux command line is a text interface to your computer. Often 
+                  referred to as the shell, terminal, console, prompt or various other names, 
+                  it can give the appearance of being complex and confusing to use, but once 
+                  you understand it, it becomes a very powerful tool. 
+                </p>
+                <p>
+                  This lesson will teach you a little of the history of the command line, 
+                  then walk you through some practical exercises to become familiar with a 
+                  few basic commands and concepts
+                </p>
+              </section>
+
+              <section class="lesson-text lesson-section" data-step="3">
+                <h3>A Brief History of Linux</h3>
+                <p>
+                  Linux has its roots in <strong>Unix</strong>, an operating system developed 
+                  in the 1970s for multi-user mainframe computers. Users connected remotely through 
+                  simple <strong>terminals</strong> that only had a keyboard and screen. Everything 
+                  was text-based, with no mouse or graphics.
+                </p>
+                <p>
+                  Because text required very little computing power, these systems were fast and efficient 
+                  even over slow networks. Users controlled the computer by typing commands such as <code>cd</code> 
+                  to change directories, <code>ls</code> to list files, and <code>mv</code> to move or rename them.
+                </p>
+                <p>
+                  A program called a <strong>shell</strong> managed these commands and allowed users to combine them 
+                  or automate tasks with scripts. The original Unix shell was called <code>sh</code>, while <code>bash</code> 
+                  is one of the most common shells used on Linux today.
+                </p>
+                <p>
+                  Linux is a Unix-like operating system, meaning it follows many of Unix's ideas and conventions. Modern Linux 
+                  still uses the same powerful text-based interface, usually through a software <strong>terminal</strong> running 
+                  alongside graphical applications.
+                </p>
+              </section>
+
+              <div class="lesson-text-nav">
+                <button type="button" class="btn btn-secondary" id="nextSectionBtn">Next Section</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="lesson-controls">
+            <a href="Lesson2.html" class="btn btn-primary" id="nextLessonBtn">Next Lesson ></a>
+          </div>
       </main>
     </div>
 
