@@ -1002,3 +1002,7 @@ footer {
     align-items: stretch;
   }
 }
+
+.small-font {
+  font-size: x-small;
+}
