@@ -1,8 +1,7 @@
-
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
 
 <!-- jQuery Terminal -->
 <link
@@ -22,9 +21,9 @@
   defer
 ></script>
 
-<!-- Your scripts -->             
-<script src="../js/script.js" defer></script>
-<script src="../js/terminal.js" defer></script>
+<script src="../../js/script.js" defer></script>
+<script src="../../js/terminal.js" defer></script>
+<script src="../../js/lesson.js" defer></script>
   </head>
 
   <body>
@@ -116,67 +115,270 @@
     <!-- Navigation -->
     <nav class="navbar">
       <div class="brand">
-        <a href="../pages/Homepage.html" class="logo">SudoSchool</a>
+        <a href="/pages/Homepage.html" class="logo">SudoSchool</a>
         <p class="nav-subtext">sudo rm -rf --no-preserve-root /</p>
       </div>
 
       <div class="nav-links">
-        <a href="LessonsLanding.html">Lessons</a>
-        <a href="Challenges.html">Challenges</a>
-        <a href="About.html">About</a>
+        <a href="/pages/LessonLanding.html">Lessons</a>
+        <a href="/pages/Challenges.html">Challenges</a>
+        <a href="/pages/About.html">About</a>
       </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="container">
-      <main class="card" role="main">
+<!-- Main Content -->
+<div class="container">
+  <main class="card lesson-card" role="main">
 
-        <h2>Lessons</h2>
+    <h2>Lesson 2 - Navigating the Linux Filesystem</h2>
 
-        <p>
-          Please select a lesson to get started:
-        </p>
+    <div class="lesson-progress" id="lessonProgress">
+      <div class="lesson-progress-label">
+        <span>Progress</span>
+        <span id="progressValue">0%</span>
+      </div>
+      <div class="lesson-progress-bar">
+        <div id="progressBarFill"></div>
+      </div>
+    </div>
 
-        <hr class="Divider">
+    <hr class="Divider">
 
-        <div class="subcards">
-          <a class="subcard" role="Lesson1" href="../pages/Lessons/Lesson1.html">
-            <h3>
-              Lesson 1 - What is Linux?
-            </h3>
-            <hr class="Divider">
-            <P class="small-font">
-                          Learn the origins and basics of the most used OS / Kernal on the planet, used by: 2 Billion Smartphones, 100% of the world's top 500 fastest supercomputers, Around 90% of all cloud infrastructure, Smart TVs, routers, smart home gadgets, and even the infotainment systems in most modern cars are powered by embedded Linux.
-            </P>
-          </a>
+    <div class="lesson-content">
 
-          <a class="subcard" role="Lesson2" href="../pages/Lessons/Lesson2.html">
-            <h3>
-              Lesson 2 - The Linux Filesystem.
-            </h3>
-            <hr class="Divider">
-            <p class="small-font">
-              Learn the functions, hierarchy and power of the Linux filesystem, and how to navigate, manage and manipulate it from the command line. Learn to find, create, move, copy, delete and edit files and directories.
-            </p>
-          </a>
+      <section class="lesson-terminal">
+        <h3>Interactive Terminal Sim:</h3>
+        <div id="terminal"></div>
+      </section>
 
-          <a class="subcard" role="Lesson3">
+      <div class="lesson-text-col">
 
-          </a>
+        <!-- Section 1 -->
+        <section class="lesson-text lesson-section" data-step="1">
+          <h3>Understanding the Filesystem</h3>
 
-          <a class="subcard" role="Lesson4">
+          <p>
+            Every operating system needs a way to organise the files and folders
+            stored on a computer. Linux uses a <strong>filesystem</strong> to
+            organise everything into a hierarchy of directories and files.
+          </p>
 
-          </a>
+          <p>
+            Unlike Windows, which commonly uses drive letters such as
+            <code>C:</code>, Linux has a single starting point called the
+            <strong>root directory</strong>. It is represented by a forward
+            slash:
+          </p>
 
-          <a class="subcard" role="Lesson3">
+          <pre><code>/</code></pre>
 
-          </a>
+          <p>
+            Everything on a Linux system exists somewhere underneath this
+            directory. Your files, programs, configuration files and even
+            hardware devices are organised within this structure.
+          </p>
 
-          <a class="subcard" role="Lesson4">
+          <p>
+            You can think of the filesystem like a tree. The root directory is
+            the trunk, directories are branches, and files are the leaves.
+          </p>
+        </section>
 
-          </a>
+
+        <!-- Section 2 -->
+        <section class="lesson-text lesson-section" data-step="2">
+          <h3>Where Am I?</h3>
+
+          <p>
+            When you open a terminal, you are always working inside a particular
+            directory. This is called your <strong>current working directory</strong>.
+          </p>
+
+          <p>
+            To find out where you currently are, use the <code>pwd</code>
+            command:
+          </p>
+
+          <pre><code>pwd</code></pre>
+
+          <p>
+            <code>pwd</code> stands for <strong>Print Working Directory</strong>.
+            It prints the full path of the directory you are currently inside.
+          </p>
+
+          <p>
+            For example, you might see:
+          </p>
+
+          <pre><code>/home/student</code></pre>
+
+          <p>
+            This tells you that you are inside the <code>student</code>
+            directory, which is inside <code>/home</code>.
+          </p>
+
+          <hr class="Divider">
+
+          <p>
+            You can see what is inside your current directory using
+            <code>ls</code>:
+          </p>
+
+          <pre><code>ls</code></pre>
+
+          <p>
+            Try using <code>pwd</code> and <code>ls</code> in the terminal.
+            Knowing where you are and what is around you is the first step to
+            navigating Linux.
+          </p>
+        </section>
+
+
+        <!-- Section 3 -->
+        <section class="lesson-text lesson-section" data-step="3">
+          <h3>Moving Through Directories</h3>
+
+          <p>
+            The <code>cd</code> command is used to
+            <strong>change directory</strong>. It allows you to move from one
+            directory to another.
+          </p>
+
+          <p>
+            For example, if your current directory contains a folder called
+            <code>Documents</code>, you can enter it with:
+          </p>
+
+          <pre><code>cd Documents</code></pre>
+
+          <p>
+            You can then use <code>pwd</code> to confirm where you are:
+          </p>
+
+          <pre><code>pwd</code></pre>
+
+          <p>
+            To move back to the directory above your current location, use
+            <code>..</code>:
+          </p>
+
+          <pre><code>cd ..</code></pre>
+
+          <p>
+            The two dots represent the <strong>parent directory</strong> —
+            the directory immediately above the one you are currently in.
+          </p>
+
+          <hr class="Divider">
+
+          <p>
+            There is also a shortcut for your home directory:
+          </p>
+
+          <pre><code>cd ~</code></pre>
+
+          <p>
+            The <code>~</code> symbol represents your home directory. This means
+            you can return home from almost anywhere without needing to type out
+            the entire path.
+          </p>
+        </section>
+
+
+        <!-- Section 4 -->
+        <section class="lesson-text lesson-section" data-step="4">
+          <h3>Understanding Paths</h3>
+
+          <p>
+            A <strong>path</strong> describes the location of a file or
+            directory in the filesystem.
+          </p>
+
+          <p>
+            There are two main types of paths: <strong>absolute</strong> paths
+            and <strong>relative</strong> paths.
+          </p>
+
+          <h4>Absolute Paths</h4>
+
+          <p>
+            An absolute path starts at the root directory
+            <code>/</code> and gives the complete location of something.
+          </p>
+
+          <pre><code>/home/student/Documents</code></pre>
+
+          <p>
+            This path always refers to the same location, regardless of which
+            directory you are currently in.
+          </p>
+
+          <hr class="Divider">
+
+          <h4>Relative Paths</h4>
+
+          <p>
+            A relative path describes a location starting from your
+            <strong>current directory</strong>.
+          </p>
+
+          <p>
+            If you are currently in <code>/home/student</code>, you could enter
+            your Documents folder with:
+          </p>
+
+          <pre><code>cd Documents</code></pre>
+
+          <p>
+            You could also refer to it as:
+          </p>
+
+          <pre><code>./Documents</code></pre>
+
+          <p>
+            The <code>.</code> represents your current directory.
+          </p>
+
+          <hr class="Divider">
+
+          <p>
+            Understanding paths is extremely important when using Linux.
+            Eventually, you will use them to open files, run programs, move
+            files and interact with different parts of the system.
+          </p>
+        </section>
+
+
+        <!-- Navigation -->
+        <div class="lesson-text-nav">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="nextSectionBtn"
+          >
+            Next Section
+          </button>
         </div>
 
+      </div>
+    </div>
+
+    <div class="lesson-controls">
+      <a
+        href="Lesson3.html"
+        class="btn btn-primary"
+        id="nextLessonBtn"
+      >
+        Next Lesson >
+      </a>
+    </div>
+
+  </main>
+</div>
+
+          <div class="lesson-controls">
+            <a href="Lesson3.html" class="btn btn-primary" id="nextLessonBtn">Next Lesson ></a>
+          </div>
       </main>
     </div>
 

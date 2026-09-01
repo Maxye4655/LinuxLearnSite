@@ -1,233 +1,571 @@
 $(function () {
-  const HOME = ['home', 'student'];
-  const USER = 'student';
-  const HOST = 'sudo-school';
-
-  const fs = {
-    type: 'dir',
-    contents: {
+  const terminal = $("#terminal");
+  const filesystem = {
+    type: "dir",
+    children: {
       home: {
-        type: 'dir',
-        contents: {
+        type: "dir",
+        children: {
           student: {
-            type: 'dir',
-            contents: {
-              Documents: { type: 'dir', contents: {} },
-              Downloads: { type: 'dir', contents: {} },
-                'notes.txt': {
-                    type: 'file',
-                    size: 148,
-                    content: `SudoSchool`
-                },
-              projects: {
-                type: 'dir',
-                contents: {
-                  'hello.c': { type: 'file', size: 84, content: '#include <stdio.h>\nint main(void) { return 0; }' },
-                },
+            type: "dir",
+            children: {
+              Documents: {
+                type: "dir",
+                children: {
+                  "notes.txt": {
+                    type: "file",
+                    content: "Remember to learn Linux!"
+                  },
+                  "project.txt": {
+                    type: "file",
+                    content: "My first Linux project."
+                  },
+                  projects: {
+                    type: "dir",
+                    children: {
+                      "hello.py": {
+                        type: "file",
+                        content: 'print("Hello, Linux!")'
+                      },
+                      "README.md": {
+                        type: "file",
+                        content: "# My Project"
+                      }
+                    }
+                  }
+                }
               },
-            },
-          },
-          root: {
-            type: 'dir',
-            contents: {
-              'flag.txt': { type: 'file', size: 42, content: 'You found the secret! Nice work.' },
-            },
-          },
-        },
+
+              Downloads: {
+                type: "dir",
+                children: {
+                  "linux-guide.pdf": {
+                    type: "file",
+                    content: ""
+                  },
+                  "wallpaper.png": {
+                    type: "file",
+                    content: ""
+                  }
+                }
+              },
+
+              Pictures: {
+                type: "dir",
+                children: {
+                  "penguin.png": {
+                    type: "file",
+                    content: ""
+                  },
+                  "terminal.jpg": {
+                    type: "file",
+                    content: ""
+                  }
+                }
+              },
+
+              Music: {
+                type: "dir",
+                children: {
+                  "favourite-song.mp3": {
+                    type: "file",
+                    content: ""
+                  }
+                }
+              },
+
+              Desktop: {
+                type: "dir",
+                children: {
+                  "welcome.txt": {
+                    type: "file",
+                    content: "Welcome to Linux!"
+                  }
+                }
+              },
+
+              ".bashrc": {
+                type: "file",
+                hidden: true,
+                content: "# ~/.bashrc"
+              },
+
+              ".config": {
+                type: "dir",
+                hidden: true,
+                children: {
+                  terminal: {
+                    type: "dir",
+                    children: {
+                      "config.conf": {
+                        type: "file",
+                        content: "theme=dark"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       },
-    },
+
+      etc: {
+        type: "dir",
+        children: {
+          "hostname": {
+            type: "file",
+            content: "linux-machine"
+          },
+          "hosts": {
+            type: "file",
+            content: "127.0.0.1 localhost"
+          },
+          "os-release": {
+            type: "file",
+            content: "NAME=\"SudoSchool Linux\""
+          },
+          ssh: {
+            type: "dir",
+            children: {
+              "sshd_config": {
+                type: "file",
+                content: "# SSH configuration"
+              }
+            }
+          }
+        }
+      },
+
+      var: {
+        type: "dir",
+        children: {
+          log: {
+            type: "dir",
+            children: {
+              "system.log": {
+                type: "file",
+                content: "System started successfully."
+              },
+              "auth.log": {
+                type: "file",
+                content: "Authentication events."
+              }
+            }
+          },
+          tmp: {
+            type: "dir",
+            children: {}
+          }
+        }
+      },
+
+      tmp: {
+        type: "dir",
+        children: {}
+      },
+
+      usr: {
+        type: "dir",
+        children: {
+          bin: {
+            type: "dir",
+            children: {
+              bash: { type: "file", content: "" },
+              cat: { type: "file", content: "" },
+              cd: { type: "file", content: "" },
+              ls: { type: "file", content: "" },
+              pwd: { type: "file", content: "" },
+              find: { type: "file", content: "" }
+            }
+          },
+
+          share: {
+            type: "dir",
+            children: {
+              doc: {
+                type: "dir",
+                children: {
+                  "README.txt": {
+                    type: "file",
+                    content: "Documentation lives here."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+
+      bin: {
+        type: "dir",
+        children: {
+          sh: { type: "file", content: "" },
+          bash: { type: "file", content: "" },
+          ls: { type: "file", content: "" },
+          cp: { type: "file", content: "" },
+          mv: { type: "file", content: "" },
+          rm: { type: "file", content: "" }
+        }
+      },
+
+      root: {
+        type: "dir",
+        children: {
+          "README.txt": {
+            type: "file",
+            content: "This is the root user's home directory."
+          }
+        }
+      }
+    }
   };
 
-  let cwd = [...HOME];
+  let currentPath = [ "home", "student" ];
 
-  function getNode(pathArr) {
-    let node = fs;
-    for (const p of pathArr) {
-      if (p === '') continue;
-      if (node.type !== 'dir' || !node.contents[p]) return null;
-      node = node.contents[p];
+  function getNode(path) {
+    let node = filesystem;
+
+    for (const part of path) {
+      if (!node.children || !node.children[part]) {
+        return null;
+      }
+
+      node = node.children[part];
     }
+
     return node;
   }
 
-  function getDir(pathArr) {
-    const node = getNode(pathArr);
-    return node && node.type === 'dir' ? node.contents : null;
+  function pathToString(path) {
+    return "/" + path.join("/");
   }
 
-  function normalize(parts) {
-    const out = [];
-    for (const p of parts) {
-      if (p === '' || p === '.') continue;
-      if (p === '..') out.pop();
-      else out.push(p);
-    }
-    return out;
-  }
+  function normalizePath(path) {
+    const result = [];
 
-  function resolve(target) {
-    if (target === undefined) return normalize(cwd);
-    if (target === '~') return [...HOME];
-    if (target === '~/' + HOME[1] || target === '~/') return [...HOME];
-    if (target.startsWith('~')) {
-      const sub = target.slice(2).split('/').filter(Boolean);
-      return normalize([...HOME, ...sub]);
-    }
-    if (target.startsWith('/')) {
-      return normalize(target.split('/'));
-    }
-    return normalize([...cwd, ...target.split('/')]);
-  }
-
-  function prompt() {
-    const rel = cwd.join('/') === HOME.join('/') ? '~' : '/' + cwd.join('/');
-    return `student@sudo-school:${rel}$ `;
-  }
-
-  const commands = {
-    help: {
-      description: 'Show this help message',
-      run: function (term) {
-        term.echo('Available commands:');
-        term.echo('');
-        Object.keys(commands).forEach((name) => {
-          term.echo(`  ${name.padEnd(10)} ${commands[name].description || ''}`);
-        });
-      },
-    },
-    pwd: {
-      description: 'Print working directory',
-      run: function (term) {
-        term.echo('/' + cwd.join('/'));
-      },
-    },
-    whoami: {
-      description: 'Print current user',
-      run: function (term) {
-        term.echo(USER);
-      },
-    },
-    ls: {
-      description: 'List directory contents',
-      run: function (term, args) {
-        const flags = args.filter((a) => a.startsWith('-'));
-        const targets = args.filter((a) => !a.startsWith('-'));
-        const list = targets.length ? targets : [undefined];
-        const long = flags.some((f) => f.includes('l'));
-        const all = flags.some((f) => f.includes('a'));
-
-        list.forEach((target, i) => {
-          const path = resolve(target);
-          const contents = getDir(path);
-          const label = target === undefined ? '.' : '/' + path.join('/');
-          if (contents === null) {
-            term.echo(`ls: cannot access '${label}': No such file or directory`);
-            return;
-          }
-          if (list.length > 1) term.echo(`${label}:`);
-          let names = Object.entries(contents);
-          if (all) {
-            names = names.concat([
-              ['.', { type: 'dir' }],
-              ['..', { type: 'dir' }],
-            ]);
-          }
-          names.sort((a, b) => a[0].localeCompare(b[0]));
-          if (long) {
-            term.echo(`total ${names.length}`);
-            names.forEach(([name, node]) => {
-              const isDir = node.type === 'dir';
-              const perms = isDir ? 'drwxr-xr-x' : '-rw-r--r--';
-              const size = isDir ? '4096' : String(node.size).padStart(4, ' ');
-              term.echo(`${perms} 1 student student ${size} Jan  1 12:00 ${name}${isDir ? '/' : ''}`);
-            });
-          } else {
-            term.echo(names.map(([name, node]) => (node.type === 'dir' ? name + '/' : name)).join('  '));
-          }
-          if (i < list.length - 1) term.echo('');
-        });
-      },
-    },
-    cd: {
-      description: 'Change directory',
-      run: function (term, args) {
-        const target = args[0];
-        if (target === undefined) {
-          cwd = [...HOME];
-        } else {
-          const path = resolve(target);
-          if (getDir(path) === null) {
-            term.echo(`bash: cd: ${target}: No such file or directory`);
-            return;
-          }
-          cwd = path;
-        }
-        term.set_prompt(prompt());
-      },
-    },
-    cat: {
-      description: 'Print file contents',
-      run: function (term, args) {
-        if (!args.length) {
-          term.echo('cat: missing operand');
-          term.echo("Try 'cat --help' for more information.");
-          return;
-        }
-        args.forEach((target) => {
-          const path = resolve(target);
-          const node = getNode(path);
-          if (!node) {
-            term.echo(`cat: ${target}: No such file or directory`);
-          } else if (node.type === 'dir') {
-            term.echo(`cat: ${target}: Is a directory`);
-          } else {
-            term.echo(node.content || `# (empty file, ${node.size} bytes)`);
-          }
-        });
-      },
-    },
-    echo: {
-      description: 'Print text',
-      run: function (term, args) {
-        term.echo(args.join(' '));
-      },
-    },
-    date: {
-      description: 'Print current date and time',
-      run: function (term) {
-        term.echo(new Date().toString());
-      },
-    },
-    clear: {
-      description: 'Clear the terminal',
-      run: function (term) {
-        term.clear();
-      },
-    },
-  };
-
-  $('#terminal').terminal(
-    function (command, term) {
-      const trimmed = command.trim();
-      if (!trimmed) return;
-
-      const parts = trimmed.split(/\s+/);
-      const name = parts[0];
-      const handler = commands[name];
-
-      if (handler) {
-        handler.run(term, parts.slice(1));
-      } else {
-        term.echo(`bash: ${name}: command not found`);
-        term.echo(`Try 'help' to see available commands.`);
+    for (const part of path) {
+      if (!part || part === ".") {
+        continue;
       }
+
+      if (part === "..") {
+        result.pop();
+      } else {
+        result.push(part);
+      }
+    }
+
+    return result;
+  }
+
+  function resolvePath(input) {
+    if (!input || input === "~") {
+      return ["home", "student"];
+    }
+
+    if (input.startsWith("~")) {
+      input = "/home/student" + input.slice(1);
+    }
+
+    let path;
+
+    if (input.startsWith("/")) {
+      path = input.split("/");
+    } else {
+      path = [...currentPath, ...input.split("/")];
+    }
+
+    return normalizePath(path);
+  }
+
+  function getDisplayPath() {
+    const home = ["home", "student"];
+
+    if (
+      currentPath.length >= home.length &&
+      currentPath[0] === "home" &&
+      currentPath[1] === "student"
+    ) {
+      const remainder = currentPath.slice(2);
+
+      if (remainder.length === 0) {
+        return "~";
+      }
+
+      return "~/" + remainder.join("/");
+    }
+
+    return pathToString(currentPath);
+  }
+
+  function listDirectory(args) {
+    const node = getNode(currentPath);
+
+    if (!node || node.type !== "dir") {
+      return "ls: cannot access directory";
+    }
+
+    let showHidden = false;
+    let longFormat = false;
+
+    args.forEach(arg => {
+      if (arg.includes("a")) showHidden = true;
+      if (arg.includes("l")) longFormat = true;
+    });
+
+    let entries = Object.entries(node.children);
+
+    if (!showHidden) {
+      entries = entries.filter(([name, item]) => !name.startsWith("."));
+    }
+
+    if (entries.length === 0) {
+      return "";
+    }
+
+    if (!longFormat) {
+      return entries.map(([name, item]) => {
+        return item.type === "dir" ? name + "/" : name;
+      }).join("  ");
+    }
+
+    return entries.map(([name, item]) => {
+      if (item.type === "dir") {
+        return `drwxr-xr-x  student student  ${name}/`;
+      }
+
+      return `-rw-r--r--  student student  ${name}`;
+    }).join("\n");
+  }
+
+  function changeDirectory(args) {
+    if (args.length === 0) {
+      currentPath = ["home", "student"];
+      return "";
+    }
+
+    const target = resolvePath(args[0]);
+    const node = getNode(target);
+
+    if (!node) {
+      return `bash: cd: ${args[0]}: No such file or directory`;
+    }
+
+    if (node.type !== "dir") {
+      return `bash: cd: ${args[0]}: Not a directory`;
+    }
+
+    currentPath = target;
+    return "";
+  }
+
+  function findFiles(args) {
+    let startPath = currentPath;
+    let namePattern = null;
+
+    if (args.length === 0) {
+      return walkFilesystem(startPath, "");
+    }
+
+    if (args[0].startsWith("-")) {
+      namePattern = args[1];
+    } else {
+      startPath = resolvePath(args[0]);
+
+      if (args[1] === "-name") {
+        namePattern = args[2];
+      }
+    }
+
+    if (!getNode(startPath)) {
+      return `find: '${args[0]}': No such file or directory`;
+    }
+
+    return walkFilesystem(startPath, namePattern);
+  }
+
+  function walkFilesystem(startPath, pattern) {
+    const results = [];
+
+    function walk(path, node) {
+      const relativePath = "." + pathToString(path.slice(startPath.length));
+
+      if (path.length > startPath.length) {
+        const name = path[path.length - 1];
+
+        if (!pattern || matchesPattern(name, pattern)) {
+          results.push(relativePath);
+        }
+      }
+
+      if (node.type === "dir") {
+        for (const [name, child] of Object.entries(node.children)) {
+          walk([...path, name], child);
+        }
+      }
+    }
+
+    walk(startPath, getNode(startPath));
+
+    return results.join("\n");
+  }
+
+  function matchesPattern(name, pattern) {
+    if (!pattern) return true;
+
+    if (pattern === "*") return true;
+
+    if (pattern.startsWith("*.")) {
+      return name.endsWith(pattern.slice(1));
+    }
+
+    return name === pattern;
+  }
+
+  function catFile(args) {
+    if (args.length === 0) {
+      return "cat: missing operand";
+    }
+
+    const target = resolvePath(args[0]);
+    const node = getNode(target);
+
+    if (!node) {
+      return `cat: ${args[0]}: No such file or directory`;
+    }
+
+    if (node.type === "dir") {
+      return `cat: ${args[0]}: Is a directory`;
+    }
+
+    return node.content || "";
+  }
+
+  function treeCommand() {
+    const node = getNode(currentPath);
+
+    function render(node, prefix) {
+      let output = "";
+
+      const entries = Object.entries(node.children)
+        .filter(([name]) => !name.startsWith("."));
+
+      entries.forEach(([name, child], index) => {
+        const last = index === entries.length - 1;
+        const branch = last ? "└── " : "├── ";
+
+        output += prefix + branch + name;
+
+        if (child.type === "dir") {
+          output += "/\n";
+          output += render(
+            child,
+            prefix + (last ? "    " : "│   ")
+          );
+        } else {
+          output += "\n";
+        }
+      });
+
+      return output;
+    }
+
+    return ".\n" + render(node, "");
+  }
+
+  function execute(command) {
+    const parts = command.trim().split(/\s+/);
+
+    if (parts.length === 0 || !parts[0]) {
+      return "";
+    }
+
+    const cmd = parts[0];
+    const args = parts.slice(1);
+
+    switch (cmd) {
+      case "pwd":
+        return pathToString(currentPath);
+
+      case "ls":
+        return listDirectory(args);
+
+      case "cd":
+        return changeDirectory(args);
+
+      case "cat":
+        return catFile(args);
+
+      case "find":
+        return findFiles(args);
+
+      case "tree":
+        return treeCommand();
+
+      case "clear":
+        terminal.terminal().clear();
+        return "";
+
+      case "whoami":
+        return "student";
+
+      case "hostname":
+        return "linux-machine";
+
+      case "echo":
+        return args.join(" ");
+
+      case "help":
+        return [
+          "Available commands:",
+          "",
+          "  pwd       Print the current directory",
+          "  ls        List files and directories",
+          "  cd        Change directory",
+          "  cat       Display a file",
+          "  find      Search for files",
+          "  tree      Display the directory structure",
+          "  whoami    Display the current user",
+          "  hostname  Display the computer's hostname",
+          "  echo      Print text",
+          "  clear     Clear the terminal",
+          "  help      Show this help message"
+        ].join("\n");
+
+      default:
+        return `bash: ${cmd}: command not found`;
+    }
+  }
+
+  terminal.terminal(
+    function (command) {
+      return execute(command);
     },
     {
-      greetings: 'Welcome to SudoSchool!\nType "help" to see available commands.\n',
-      prompt: prompt(),
-      height: '100%',
-      history: true,
-      keymap: undefined,
+      greetings: [
+        "SudoSchool Linux [Lesson 2]",
+        "Type 'help' to see available commands.",
+        ""
+      ].join("\n"),
+
+      prompt: function () {
+        return `student@linux-machine:${getDisplayPath()}$ `;
+      },
+
+      completion: [
+        "pwd",
+        "ls",
+        "cd",
+        "cat",
+        "find",
+        "tree",
+        "whoami",
+        "hostname",
+        "echo",
+        "clear",
+        "help"
+      ]
     }
   );
 });
