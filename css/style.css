@@ -255,6 +255,7 @@ body::before {
   line-height: 1.1;
 }
 .logo {
+  margin-top: 20px;
   color: #fff;
   text-decoration: none;
   font-size: 1.5rem;
