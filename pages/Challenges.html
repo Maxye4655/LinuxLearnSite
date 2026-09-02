@@ -9,7 +9,7 @@
     <title>Challenges | SudoSchool</title>
 
     <link rel="stylesheet" href="../css/style.css" />
-    <script src="../js/script.js" defer></script>
+    <script src="../js/quiz.js" defer></script>
   </head>
   <body>
 
@@ -93,20 +93,75 @@
 
     <div class="container">
       <main class="card" role="main">
-      <h2>Challenges</h2>
 
-      <div class="quiz-container" id="quiz">
-        <div id="quiz-header">
-            <h2 id="question">Question Text</h2>
-            <div id="progress">Question 1 of X</div>
-        </div>
-        <div id="answer-buttons" class="btn-grid">
-            <!-- Buttons will be dynamically inserted here -->
-        </div>
-        <div id="controls">
-            <button id="next-btn" class="next-btn hide">Next Question</button>
-        </div>
-    </div>
+        <!-- ============ Category Selection Screen ============ -->
+        <section id="categories">
+          <h2>Challenges</h2>
+          <p class="small-font">Pick a topic and test your Linux knowledge. Answer every question and see your score.</p>
+          <div class="category-grid" id="categoryGrid">
+            <button type="button" class="category-card" data-category="basics">
+              <span class="category-name">Basics</span>
+              <span class="category-desc">Commands and concepts every beginner needs.</span>
+            </button>
+            <button type="button" class="category-card" data-category="terminal">
+              <span class="category-name">Terminal</span>
+              <span class="category-desc">Working efficiently from the command line.</span>
+            </button>
+            <button type="button" class="category-card" data-category="filesystem">
+              <span class="category-name">Filesystem</span>
+              <span class="category-desc">Paths, directories, and file navigation.</span>
+            </button>
+            <button type="button" class="category-card" data-category="permissions">
+              <span class="category-name">Permissions</span>
+              <span class="category-desc">Owners, groups, and access control.</span>
+            </button>
+            <button type="button" class="category-card" data-category="networking">
+              <span class="category-name">Networking</span>
+              <span class="category-desc">Connecting and diagnosing network issues.</span>
+            </button>
+            <button type="button" class="category-card" data-category="processes">
+              <span class="category-name">Processes</span>
+              <span class="category-desc">Managing running programs and jobs.</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ============ Quiz Screen ============ -->
+        <section id="quiz" hidden>
+          <div class="quiz-header">
+            <button type="button" id="backToCategories" class="back-btn">&larr; Categories</button>
+            <h2 id="categoryTitle">Category</h2>
+          </div>
+          <div class="quiz-meta">
+            <span class="quiz-counter">
+              Question <span id="questionNumber">1</span> / <span id="quizTotal">0</span>
+            </span>
+            <span id="scoreDisplay">Score: 0</span>
+          </div>
+          <div class="quiz-progress">
+            <div class="quiz-progress-bar" id="quizProgressFill"></div>
+          </div>
+          <h3 id="question">Question Text</h3>
+          <div id="answers" class="quiz-answers">
+            <!-- Answer buttons are inserted here -->
+          </div>
+          <div id="feedback" role="status"></div>
+          <button type="button" id="nextQuestionBtn" class="quiz-next-btn" disabled>Next Question</button>
+        </section>
+
+        <!-- ============ Results Screen ============ -->
+        <section id="results" hidden>
+          <h2>Results</h2>
+          <p class="result-score">
+            You scored <span id="finalScore">0</span> out of <span id="finalTotal">0</span>
+          </p>
+          <p id="resultMessage" class="result-message"></p>
+          <div class="quiz-result-buttons">
+            <button type="button" id="restartQuizBtn" class="quiz-next-btn">Try Again</button>
+            <button type="button" id="chooseCategoryBtn" class="quiz-next-btn secondary">Choose Another Category</button>
+          </div>
+        </section>
+
       </main>
     </div>
   </body>
