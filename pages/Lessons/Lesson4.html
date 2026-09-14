@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="../../css/style.css" />
+
+<!-- jQuery Terminal -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.46.2/css/jquery.terminal.min.css"
+/>
+
+<!-- jQuery -->
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+  defer
+></script>
+
+<!-- jQuery Terminal -->
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.46.2/js/jquery.terminal.min.js"
+  defer
+></script>
+
+<script src="../../js/script.js" defer></script>
+<script src="../../js/terminal.js" defer></script>
+<script src="../../js/lesson.js" defer></script>
+  </head>
+
+  <body>
+
+    <!-- Glass distortion filter -->
+    <svg style="display: none">
+      <filter
+        id="de-glass-distortion"
+        filterUnits="objectBoundingBox"
+        primitiveUnits="objectBoundingBox"
+        x="0"
+        y="0"
+        width="1"
+        height="1"
+        colorInterpolationFilters="sRGB"
+      >
+        <feImage
+          href="data:image/png;base64,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"
+          x="0"
+          y="0"
+          width="1"
+          height="1"
+          preserveAspectRatio="none"
+          result="displacementMap"
+        />
+
+        <feImage
+          href="data:image/png;base64,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"
+          x="0"
+          y="0"
+          width="1"
+          height="1"
+          preserveAspectRatio="none"
+          result="specularMap"
+        />
+
+        <feGaussianBlur
+          in="SourceGraphic"
+          stdDeviation="0"
+          result="blurred"
+        />
+
+        <feDisplacementMap
+          in="blurred"
+          in2="displacementMap"
+          scale="0.18"
+          xChannelSelector="R"
+          yChannelSelector="G"
+          result="refracted"
+        />
+
+        <feComponentTransfer
+          in="specularMap"
+          result="specularAlpha"
+        >
+          <feFuncA type="linear" slope="0.1" />
+        </feComponentTransfer>
+
+        <feBlend
+          in="specularAlpha"
+          in2="refracted"
+          mode="screen"
+        />
+      </filter>
+    </svg>
+
+    <!-- Light Rays -->
+    <div class="light-rays" aria-hidden="true"></div>
+
+    <!-- Big Bubbles -->
+    <div class="bubble bubble1"></div>
+    <div class="bubble bubble2"></div>
+    <div class="bubble bubble3"></div>
+
+    <!-- Small Bubbles -->
+    <div class="bubble bubble4"></div>
+    <div class="bubble bubble5"></div>
+    <div class="bubble bubble6"></div>
+    <div class="bubble bubble7"></div>
+    <div class="bubble bubble8"></div>
+    <div class="bubble bubble9"></div>
+    <div class="bubble bubble10"></div>
+
+    <!-- Extra Glass Spheres -->
+    <div class="bubble bubble11"></div>
+    <div class="bubble bubble12"></div>
+    <div class="bubble bubble13"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="brand">
+        <a href="/pages/Homepage.html" class="logo">SudoSchool</a>
+        <p class="nav-subtext">sudo rm -rf --no-preserve-root /</p>
+      </div>
+
+      <div class="nav-links">
+        <a href="/pages/LessonLanding.html">Lessons</a>
+        <a href="/pages/Challenges.html">Challenges</a>
+        <a href="/pages/About.html">About</a>
+      </div>
+    </nav>
+
+<!-- Main Content -->
+<div class="container">
+      <main class="card lesson-card" role="main">
+
+        <h2>Lesson 4 - File &amp; Directory Permissions</h2>
+
+        <div class="lesson-progress" id="lessonProgress">
+          <div class="lesson-progress-label">
+            <span>Progress</span>
+            <span id="progressValue">0%</span>
+          </div>
+          <div class="lesson-progress-bar">
+            <div id="progressBarFill"></div>
+          </div>
+        </div>
+
+        <hr class="Divider">
+        <div class="lesson-content">
+          <section class="lesson-terminal">
+            <h3>Interactive Terminal Sim:</h3>
+            <div id="terminal"></div>
+          </section>
+
+          <div class="lesson-text-col">
+            <section class="lesson-text lesson-section" data-step="1">
+              <h3>Why Permissions Matter</h3>
+              <p>
+                Linux was built from the ground up as a <strong>multi-user</strong>
+                system. Many different people — and many different programs — can
+                use the same computer, so the operating system needs a way to
+                control who is allowed to read, change, or run each file.
+              </p>
+              <p>
+                That control is handled by <strong>permissions</strong>. Every file
+                and directory has an owner, and rules for exactly what the owner,
+                other members of a group, and everyone else are allowed to do with
+                it.
+              </p>
+            </section>
+
+            <section class="lesson-text lesson-section" data-step="2">
+              <h3>Reading Permission Strings</h3>
+              <p>
+                You can see a file's permissions with the long listing format of
+                <code>ls</code>:
+              </p>
+              <pre><code>ls -l</code></pre>
+              <p>
+                Each entry starts with something like <code>-rw-r--r--</code>. This
+                string is split into three groups of three characters, one for the
+                <strong>owner</strong>, one for the <strong>group</strong>, and one
+                for <strong>others</strong>:
+              </p>
+              <pre><code>r w x  r--   r--
+owner  group others</code></pre>
+              <p>
+                Each of the three letters means:
+              </p>
+              <pre><code>r  read
+w  write
+x  execute</code></pre>
+              <p>
+                A dash (<code>-</code>) means that permission is not granted. A
+                directory that shows <code>d</code> at the very start (instead of
+                <code>-</code>) needs the <strong>execute</strong> permission for
+                users to be able to enter it.
+              </p>
+            </section>
+
+            <section class="lesson-text lesson-section" data-step="3">
+              <h3>Changing Permissions with chmod</h3>
+              <p>
+                <code>chmod</code> ("change mode") changes a file's permissions.
+                Try making the deploy script in the projects folder executable:
+              </p>
+              <pre><code>chmod +x Documents/projects/deploy.sh</code></pre>
+              <p>
+                This adds the execute permission for everyone. You can remove a
+                permission the same way, using a minus sign instead:
+              </p>
+              <pre><code>chmod -w Documents/projects/deploy.sh</code></pre>
+              <hr class="Divider">
+              <p>
+                Permissions can also be set using numbers, where each permission has
+                a value: <strong>read = 4</strong>, <strong>write = 2</strong>,
+                <strong>execute = 1</strong>. Add them together for each of the
+                three groups:
+              </p>
+              <pre><code>chmod 755 Documents/projects/deploy.sh</code></pre>
+              <p>
+                <code>755</code> means <strong>7</strong> (read+write+execute) for
+                the owner, and <strong>5</strong> (read+execute) for the group and
+                others. <code>644</code> is another common value, giving the owner
+                read and write, and everyone else read-only.
+              </p>
+              <p>
+                Run <code>ls -l</code> again after each change to see the
+                permission string update.
+              </p>
+            </section>
+
+            <section class="lesson-text lesson-section" data-step="4">
+              <h3>Changing Ownership with chown</h3>
+              <p>
+                Sometimes a file needs to belong to a different user or group
+                entirely. That's what <code>chown</code> ("change owner") is for:
+              </p>
+              <pre><code>chown root Documents/projects/deploy.sh</code></pre>
+              <p>
+                You can set both the owner and the group at once by separating them
+                with a colon:
+              </p>
+              <pre><code>chown root:root Documents/projects/deploy.sh</code></pre>
+              <hr class="Divider">
+              <p>
+                Together, <code>chmod</code> and <code>chown</code> give
+                administrators fine control over exactly who can read, edit, or run
+                every file on the system — one of the reasons Linux is trusted to
+                run everything from personal laptops to shared servers.
+              </p>
+            </section>
+
+            <div class="lesson-text-nav">
+              <button type="button" class="btn btn-secondary" id="nextSectionBtn">Next Section</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-controls">
+          <a href="Lesson5.html" class="btn btn-primary" id="nextLessonBtn">Next Lesson &gt;</a>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
