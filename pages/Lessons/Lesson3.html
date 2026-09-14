@@ -130,7 +130,7 @@
 <div class="container">
   <main class="card lesson-card" role="main">
 
-    <h2>Lesson 3 - Basic Linux Commands</h2>
+    <h2>Lesson 3 - Working in the Terminal</h2>
 
     <div class="lesson-progress" id="lessonProgress">
       <div class="lesson-progress-label">
@@ -148,138 +148,109 @@
 
       <section class="lesson-terminal">
         <h3>Interactive Terminal Sim:</h3>
-        <div id="terminal"></div>
+        <div id="terminal">
+        </div>
       </section>
 
       <div class="lesson-text-col">
 
         <!-- Section 1 -->
         <section class="lesson-text lesson-section" data-step="1">
-          <h3>Introduction to Basic Commands</h3>
+          <h3>Becoming Faster at the Terminal</h3>
 
           <p>
-            
+            So far you've learnt a handful of commands, but real linux users
+            rarely type every command out from scratch or work throgh problems
+            alone. The terminal has a large array of built in tools to help you 
+            work faster, get help when you're stuck and cancel things that go 
+            wrong.
           </p>
 
           <p>
-            
-          </p>
-
-
-          <p>
-            
-          </p>
-
-          <p>
-            
+            In this lesson, you'll learn how to reuse old commands, read a 
+            commands manual, and stop a command that is running. 
+            These are all essential skills for working in the linux terminal. 
           </p>
         </section>
 
 
         <!-- Section 2 -->
         <section class="lesson-text lesson-section" data-step="2">
-          <h3></h3>
+          <h3>Reusing Old Commands with History</h3>
 
+          <p>
+            Every command you type is remembered by the shell. your
+            past commands with:
+          </p>
+          <pre><code>history</code></pre>
           <p>
             
           </p>
-
+            This prints a numbered list of everything you have run in this
+            session. You can also press the <strong>up</strong> and 
+            <strong>down</strong> arrow keys to cycle back through previous
+            commands instead of retyping them. 
           <p>
-            
-          </p>
-
-          <p>
-            
-          </p>
-
-          <p>
-           
-          </p>
-
-          <p>
-        
-          </p>
-
           <hr class="Divider">
-
-          <p>
-            
           </p>
-
-       
-
+            Try using a few commands like <code>pwd</code> and <code>ls</code> 
+            and then use the up and down arrows to cycle through them. Then run
+            <code>history</code> to see them listed.
           <p>
-            
-          </p>
         </section>
 
 
         <!-- Section 3 -->
         <section class="lesson-text lesson-section" data-step="3">
-          <h3>Moving Through Directories</h3>
+          <h3>Getting help with <code>Man</code></h3>
 
           <p>
-            The <code>cd</code> command is used to
-            <strong>change directory</strong>. It allows you to move from one
-            directory to another.
+            The command <code>man</code> is short for "manual", and it is one of
+            the most helpful commands in the terminal. Almost every command has a 
+            manual page that explains what it does, how to use it, and what options
+            it accepts. 
           </p>
 
           <p>
-            For example, if your current directory contains a folder called
-            <code>Documents</code>, you can enter it with:
+            You can view a command's manual page by typing <code>man</code> followed by
+            the command you want to learn about. Try it on a few commands you've learnt 
+            so far, for example, try typing:
           </p>
 
-          <pre><code>cd Documents</code></pre>
-
-          <p>
-            You can then use <code>pwd</code> to confirm where you are:
-          </p>
-
-          <pre><code>pwd</code></pre>
-
-          <p>
-            To move back to the directory above your current location, use
-            <code>..</code>:
-          </p>
-
-          <pre><code>cd ..</code></pre>
-
-          <p>
-            The two dots represent the <strong>parent directory</strong> —
-            the directory immediately above the one you are currently in.
-          </p>
+          <pre><code>man ls</code></pre>
 
           <hr class="Divider">
 
           <p>
-            There is also a shortcut for your home directory:
-          </p>
-
-          <pre><code>cd ~</code></pre>
-
-          <p>
-            The <code>~</code> symbol represents your home directory. This means
-            you can return home from almost anywhere without needing to type out
-            the entire path.
+            Play around with the <code>man</code> command, as it is very helpful for when, 
+            and you will, forget how to use a command.
           </p>
         </section>
 
 
         <!-- Section 4 -->
         <section class="lesson-text lesson-section" data-step="4">
-          <h3>Understanding Paths</h3>
+          <h3>Searching Text with grep</h3>
 
           <p>
-            A <strong>path</strong> describes the location of a file or
-            directory in the filesystem.
+            The <code>grep</code> command is used to search for text in files. It can 
+            be used to find specific words or phrases in a file, and it can also be 
+            used to search through multiple files at once.
           </p>
+          <pre><code>grep Linux Documents/notes.txt filename</code></pre>
+          <p>
+            This prints every line in the file <code>notes.txt</code> that contains the 
+            word "Linux". Add the <code>-i</code> flag to ignore uppercase and lowercase 
+            differences.
+          </p>
+          <pre><code>grep -i Linux Documents/notes.txt</code></pre>
+          <hr class="Divider">
 
           <p>
-            There are two main types of paths: <strong>absolute</strong> paths
-            and <strong>relative</strong> paths.
+            <code>grep</code> is one of the most-used tools on Linux, especially for digging through
+            large log files to find errors. 
           </p>
-
-          <h4>Absolute Paths</h4>
+          
 
           <p>
             An absolute path starts at the root directory
@@ -293,38 +264,37 @@
             directory you are currently in.
           </p>
 
-          <hr class="Divider">
+        </section>
+        <section class="lesson-text lesson-section" data-step="5">
+          <h3>Chaining and Cancelling Commands</h3>
 
-          <h4>Relative Paths</h4>
-
+          <P>
+            You can run two commands one after the other with the
+            <code>&amp;&amp;</code> operator. The second command will only run if the
+            first one succeeds. 
+          </P>
+          <pre><code>pwd &amp;&amp; ls</code></pre>
           <p>
-            A relative path describes a location starting from your
-            <strong>current directory</strong>.
+            This is useful for building small sequences of commands such as moving into 
+            a directory and then listing its contents. You can use <code>&amp;&amp;</code>
+            for any amount of commands, for example:
           </p>
-
-          <p>
-            If you are currently in <code>/home/student</code>, you could enter
-            your Documents folder with:
-          </p>
-
-          <pre><code>cd Documents</code></pre>
-
-          <p>
-            You could also refer to it as:
-          </p>
-
-          <pre><code>./Documents</code></pre>
-
-          <p>
-            The <code>.</code> represents your current directory.
-          </p>
+          <pre><code>cd Documents &amp;&amp; ls &amp;&amp; grep Linux notes.txt</code></pre>
 
           <hr class="Divider">
 
           <p>
-            Understanding paths is extremely important when using Linux.
-            Eventually, you will use them to open files, run programs, move
-            files and interact with different parts of the system.
+            Sometimes a command takes too long, gets stuck or you simply want to stop it.
+            On a real terminal, you can stop any command by pressing <strong>Ctrl+C</strong>
+            this sends an interrupt signal and cancels whatever is currently running, handing
+            control back to you. Try pressing Ctrl+C in the terminal sim now while it's idle,
+            it will simply return you to a fresh prompt. 
+          </p>
+          <hr class="Divider">
+          <p>
+            With <code>history</code>, <code>man</code>, <code>grep</code>, <code>&amp;&amp;</code>
+            and <strong>Ctrl+C</strong> in your toolkit, you're ready to work through
+            the terminal a lot more efficiently.
           </p>
         </section>
 
@@ -344,7 +314,7 @@
     </div>
 
     <div class="lesson-controls">
-      <a href="Lesson3.html" class="btn btn-primary" id="nextLessonBtn"> Next Lesson > </a>
+      <a href="Lesson4.html" class="btn btn-primary" id="nextLessonBtn"> Next Lesson > </a>
     </div>
   </main>
 </div>
