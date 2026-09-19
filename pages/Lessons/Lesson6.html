@@ -1,8 +1,7 @@
-
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
 
 <!-- jQuery Terminal -->
 <link
@@ -22,9 +21,9 @@
   defer
 ></script>
 
-<!-- Your scripts -->             
-<script src="../js/script.js" defer></script>
-<script src="../js/terminal.js" defer></script>
+<script src="../../js/script.js" defer></script>
+<script src="../../js/terminal.js" defer></script>
+<script src="../../js/lesson.js" defer></script>
   </head>
 
   <body>
@@ -116,95 +115,129 @@
     <!-- Navigation -->
     <nav class="navbar">
       <div class="brand">
-        <a href="../pages/Homepage.html" class="logo">SudoSchool</a>
+        <a href="/pages/Homepage.html" class="logo">SudoSchool</a>
         <p class="nav-subtext">sudo rm -rf --no-preserve-root /</p>
       </div>
 
       <div class="nav-links">
-        <a href="LessonLanding.html">Lessons</a>
-        <a href="Challenges.html">Challenges</a>
-        <a href="About.html">About</a>
+        <a href="/pages/LessonLanding.html">Lessons</a>
+        <a href="/pages/Challenges.html">Challenges</a>
+        <a href="/pages/About.html">About</a>
       </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="container">
-      <main class="card" role="main">
+<!-- Main Content -->
+<div class="container">
+      <main class="card lesson-card" role="main">
 
-        <h2>Lessons</h2>
+        <h2>Lesson 6 - Processes</h2>
 
-        <p>
-          Please select a lesson to get started:
-        </p>
-
-        <hr class="Divider">
-
-        <div class="subcards">
-          <a class="subcard" role="Lesson1" href="../pages/Lessons/Lesson1.html">
-            <h3>
-              Lesson 1 - What is Linux?
-            </h3>
-            <hr class="Divider">
-            <P class="small-font">
-                          Learn the origins and basics of the most used OS / Kernal on the planet, used by: 2 Billion Smartphones, 100% of the world's top 500 fastest supercomputers, Around 90% of all cloud infrastructure, Smart TVs, routers, smart home gadgets, and even the infotainment systems in most modern cars are powered by embedded Linux.
-            </P>
-          </a>
-
-          <a class="subcard" role="Lesson2" href="../pages/Lessons/Lesson2.html">
-            <h3>
-              Lesson 2 - The Linux Filesystem.
-            </h3>
-            <hr class="Divider">
-            <p class="small-font">
-              Learn the functions, hierarchy and power of the Linux filesystem, and how to navigate, manage and manipulate it from the command line. Learn to find, create, move, copy, delete and edit files and directories.
-            </p>
-          </a>
-
-          <a class="subcard" role="Lesson3" href="../pages/Lessons/Lesson3.html">
-            <h3>
-              Lesson 3 - Working in the Terminal
-            </h3>
-            <hr class="Divider">
-            <p class="small-font">
-              Learn to work faster in the terminal: reuse old commands with history, look up commands with man, search inside files with grep, chain commands together with &amp;&amp;, and cancel a running command with Ctrl+C.
-            </p>
-          </a>
-
-          <a class="subcard" role="Lesson4" href="../pages/Lessons/Lesson4.html">
-            <h3>
-              Lesson 4 - File &amp; Directory Permissions
-            </h3>
-            <hr class="Divider">
-            <p class="small-font">
-              Learn how Linux's multi-user permission system works: reading owner, group and other permissions, and using chmod and chown to control exactly who can read, write and run each file.
-            </p>
-          </a>
-
-          <a class="subcard" role="Lesson5" href="../pages/Lessons/Lesson5.html">
-            <h3>
-              Lesson 5 - Networking Basics
-            </h3>
-            <hr class="Divider">
-            <p class="small-font">
-              Learn how to test connectivity with ping, view your network interfaces with ip addr, trace the route to a host, fetch data with curl, and copy files securely with scp.
-            </p>
-          </a>
-
-          <a class="subcard" role="Lesson6" href="../pages/Lessons/Lesson6.html">
-            <h3>
-              Lesson 6 - Processes
-            </h3>
-            <hr class="Divider">
-            <p class="small-font">
-              Learn what a process is, how to view running processes with ps and top, and how to pause or stop them with Ctrl+Z and kill.
-            </p>
-          </a>
+        <div class="lesson-progress" id="lessonProgress">
+          <div class="lesson-progress-label">
+            <span>Progress</span>
+            <span id="progressValue">0%</span>
+          </div>
+          <div class="lesson-progress-bar">
+            <div id="progressBarFill"></div>
+          </div>
         </div>
 
+        <hr class="Divider">
+        <div class="lesson-content">
+          <section class="lesson-terminal">
+            <h3>Interactive Terminal Sim:</h3>
+            <div id="terminal"></div>
+          </section>
+
+          <div class="lesson-text-col">
+            <section class="lesson-text lesson-section" data-step="1">
+              <h3>What is a Process?</h3>
+              <p>
+                Every program running on a Linux computer — from your web browser to
+                the system services quietly running in the background — is a
+                <strong>process</strong>. Each process has a unique number called a
+                <strong>PID</strong> (Process ID), which the system uses to keep
+                track of it.
+              </p>
+              <p>
+                Understanding processes lets you see what your computer is actually
+                doing, and lets you step in when something is using too many
+                resources or has stopped responding.
+              </p>
+            </section>
+
+            <section class="lesson-text lesson-section" data-step="2">
+              <h3>Viewing Processes with ps</h3>
+              <p>
+                The <code>ps</code> command prints a snapshot of currently running
+                processes:
+              </p>
+              <pre><code>ps</code></pre>
+              <p>
+                By default this only shows processes belonging to you. To see every
+                process running on the whole system, including background services
+                owned by other users like <code>root</code>, add the
+                <code>-e</code> option:
+              </p>
+              <pre><code>ps -e</code></pre>
+              <p>
+                Each row shows the process's PID, the user who owns it, and the
+                command that started it.
+              </p>
+            </section>
+
+            <section class="lesson-text lesson-section" data-step="3">
+              <h3>Real-Time Monitoring with top</h3>
+              <p>
+                While <code>ps</code> shows a single snapshot, <code>top</code>
+                gives you a live, constantly updating view of every process along
+                with how much CPU and memory each one is using:
+              </p>
+              <pre><code>top</code></pre>
+              <p>
+                This is one of the first tools system administrators reach for when
+                a machine feels slow — it quickly shows which process is using the
+                most resources.
+              </p>
+            </section>
+
+            <section class="lesson-text lesson-section" data-step="4">
+              <h3>Managing Processes</h3>
+              <p>
+                Sometimes a process running in your terminal needs to be paused or
+                stopped. If a process is running in the foreground, pressing
+                <strong>Ctrl+Z</strong> pauses it and hands control back to your
+                shell, without ending it completely.
+              </p> 
+              <p>
+                To stop a process entirely, use <code>kill</code> together with its
+                PID:
+              </p>
+              <pre><code>kill 734</code></pre>
+              <p>
+                This sends a signal asking the process to shut down. Combine it with
+                <code>ps</code> or <code>ps -e</code> to first find the PID of the
+                process you want to stop.
+              </p>
+              <hr class="Divider">
+              <p>
+                With <code>ps</code>, <code>top</code>, <code>kill</code> and
+                Ctrl+Z, you now have the tools to see what your Linux system is
+                doing at any moment, and to step in when something needs your
+                attention.
+              </p>
+            </section>
+
+            <div class="lesson-text-nav">
+              <button type="button" class="btn btn-secondary" id="nextSectionBtn">Next Section</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-controls">
+          <a href="../LessonLanding.html" class="btn btn-primary" id="nextLessonBtn">Back to Lessons</a>
+        </div>
       </main>
     </div>
-
   </body>
 </html>
-
-

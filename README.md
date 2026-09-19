@@ -5,3 +5,57 @@
 <span style="color:#0000AA">▐</span><span style="color:#5555FF;background-color:#0000AA">░░░</span><span style="color:#AAAAAA">   </span><span style="color:#5555FF;background-color:#0000AA">░░░░░</span><span style="color:#0000AA">▐</span><span style="color:#5555FF;background-color:#0000AA">░░░</span><span style="color:#AAAAAA"> </span><span style="color:#0000AA">▐</span><span style="color:#5555FF;background-color:#0000AA">░░░</span><span style="color:#AAAAAA">   </span><span style="color:#5555FF;background-color:#0000AA">░░░░░</span><span style="color:#0000AA">▐</span><span style="color:#5555FF;background-color:#0000AA">░░░</span><span style="color:#AAAAAA">   </span><span style="color:#5555FF;background-color:#0000AA">░░░░</span><span style="color:#0000AA">▐</span><span style="color:#5555FF;background-color:#0000AA">░░░</span><span style="color:#0000AA">▌</span><span style="color:#AAAAAA"> </span><span style="color:#0000AA">▐</span><span style="color:#5555FF;background-color:#0000AA">░░░░</span><span style="color:#0000AA">▄▐</span><span style="color:#5555FF;background-color:#0000AA">░░░</span><span style="color:#AAAAAA">   </span><span style="color:#5555FF;background-color:#0000AA">░░░░░░░░░</span><span style="color:#AAAAAA">   </span><span style="color:#5555FF;background-color:#0000AA">░░░░░░░░</span><span style="color:#0000AA">▌</span><span style="color:#AAAAAA">  </span><span style="color:#0000AA">▐</span><span style="color:#5555FF;background-color:#0000AA">░░░</span><span style="color:#0000AA">▌▐</span><span style="color:#5555FF;background-color:#0000AA">░░░</span><span style="color:#AAAAAA">        </span><span style="color:#0000AA">▐</span><span style="color:#5555FF;background-color:#0000AA">░░░</span><span style="color:#AAAAAA">   </span><span style="color:#5555FF;background-color:#0000AA">░░░░░░░░░</span><span style="color:#AAAAAA">   </span><span style="color:#5555FF;background-color:#0000AA">░░░░</span><span style="color:#0000AA">▌▐</span><span style="color:#5555FF;background-color:#0000AA">░░░</span><span style="color:#AAAAAA"> </span><span style="color:#0000AA">▐</span><span style="color:#5555FF;background-color:#0000AA">░░░</span><span style="color:#AAAAAA">   </span><span style="color:#5555FF;background-color:#0000AA">░░░░░░░░░</span><span style="color:#AAAAAA">   </span><span style="color:#5555FF;background-color:#0000AA">░░░░</span>
 <span style="color:#0000AA">▀▀███▄▄██▀▀</span><span style="color:#AAAAAA"> </span><span style="color:#0000AA">▀▀███▀▀▀▀</span><span style="color:#AAAAAA">   </span><span style="color:#0000AA">████▌</span><span style="color:#AAAAAA"> </span><span style="color:#0000AA">▀▀▀▀▀▀████▀▀▀▀</span><span style="color:#AAAAAA">   </span><span style="color:#0000AA">████▌▀▀███▄▄██▀▀</span><span style="color:#AAAAAA">  </span><span style="color:#0000AA">▀▀▀▀▀▀████</span><span style="color:#AAAAAA"> </span><span style="color:#0000AA">▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀</span><span style="color:#AAAAAA">        </span><span style="color:#0000AA">▀▀▀▀</span><span style="color:#AAAAAA">   </span><span style="color:#0000AA">████▌</span><span style="color:#AAAAAA"> </span><span style="color:#0000AA">▀▀▀▀▀▀███▀</span><span style="color:#AAAAAA"> </span><span style="color:#0000AA">▀▀███▀▀███▄▄██▀▀</span><span style="color:#AAAAAA">  </span><span style="color:#0000AA">▀▀▀▀▀▀████</span></pre>
 
+# SudoSchool
+
+SudoSchool is an interactive, browser-based website for learning the Linux command line. It is built entirely with plain HTML5, CSS3 and JavaScript — no frameworks, no build tools and no back end. The lessons, quizzes and a live terminal all run directly in your browser.
+
+## Features
+
+- **Interactive lessons** — six lessons covering the Linux filesystem, working in the terminal, file and directory permissions, networking and processes.
+- **Live in-browser terminal** — type real Linux commands and learn by doing, with no virtual machines, downloads or setup.
+- **Challenges & quizzes** — multiple-choice questions with instant feedback, a progress bar and a final score.
+- **Glassmorphism theme** — a custom glass-effect interface with a fixed background image, light rays and floating bubbles.
+
+## Site map
+
+| Path | Description |
+| --- | --- |
+| `index.html` | Site shell (navigation + content card) |
+| `pages/Homepage.html` | Landing page with the Tux mascot |
+| `pages/LessonLanding.html` | Lesson index |
+| `pages/Lessons/Lesson1.html` – `Lesson6.html` | The six lessons |
+| `pages/Challenges.html` | Quiz challenges |
+| `pages/About.html` | About the project, source and validation |
+| `css/style.css` | All styling |
+| `js/lesson.js`, `js/quiz.js`, `js/terminal.js` | Lesson, quiz and terminal logic |
+| `images/` | Background image, cursors and the Tux mascot |
+
+## Getting started
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Maxye4655/LinuxLearnSite.git
+   ```
+
+2. Open `index.html` in a browser, or serve the folder locally — for example with VS Code Live Server or:
+
+   ```bash
+   python3 -m http.server
+   ```
+
+## Technologies
+
+- **HTML5** — semantic, accessible markup
+- **CSS3** — custom glassmorphism theme, responsive layout, custom fonts and cursors
+- **JavaScript** — lesson navigation, quiz logic and an in-browser terminal emulator
+
+## Validation
+
+[![Valid HTML5](https://www.w3.org/html/logo/badge/html5-badge-h-css3-semantics.png)](https://validator.w3.org/nu/?doc=file:///home/max/Downloads/LinuxLearnSite-updated/LinuxLearnSite-main/index.html)
+[![Valid CSS!](https://jigsaw.w3.org/css-validator/images/vcss)](https://jigsaw.w3.org/css-validator/validator?uri=file:///home/max/Downloads/LinuxLearnSite-updated/LinuxLearnSite-main/css/style.css)
+[![Valid JavaScript](https://img.shields.io/badge/JavaScript-JSHint_validated-brightgreen.svg)](https://jshint.com/)
+
+## Source
+
+The source code is available on GitHub: <https://github.com/Maxye4655/LinuxLearnSite>

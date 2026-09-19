@@ -1,8 +1,7 @@
-
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
 
 <!-- jQuery Terminal -->
 <link
@@ -22,9 +21,9 @@
   defer
 ></script>
 
-<!-- Your scripts -->             
-<script src="../js/script.js" defer></script>
-<script src="../js/terminal.js" defer></script>
+<script src="../../js/script.js" defer></script>
+<script src="../../js/terminal.js" defer></script>
+<script src="../../js/lesson.js" defer></script>
   </head>
 
   <body>
@@ -116,95 +115,126 @@
     <!-- Navigation -->
     <nav class="navbar">
       <div class="brand">
-        <a href="../pages/Homepage.html" class="logo">SudoSchool</a>
+        <a href="/pages/Homepage.html" class="logo">SudoSchool</a>
         <p class="nav-subtext">sudo rm -rf --no-preserve-root /</p>
       </div>
 
       <div class="nav-links">
-        <a href="LessonLanding.html">Lessons</a>
-        <a href="Challenges.html">Challenges</a>
-        <a href="About.html">About</a>
+        <a href="/pages/LessonLanding.html">Lessons</a>
+        <a href="/pages/Challenges.html">Challenges</a>
+        <a href="/pages/About.html">About</a>
       </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="container">
-      <main class="card" role="main">
+<!-- Main Content -->
+<div class="container">
+      <main class="card lesson-card" role="main">
 
-        <h2>Lessons</h2>
+        <h2>Lesson 5 - Networking Basics</h2>
 
-        <p>
-          Please select a lesson to get started:
-        </p>
-
-        <hr class="Divider">
-
-        <div class="subcards">
-          <a class="subcard" role="Lesson1" href="../pages/Lessons/Lesson1.html">
-            <h3>
-              Lesson 1 - What is Linux?
-            </h3>
-            <hr class="Divider">
-            <P class="small-font">
-                          Learn the origins and basics of the most used OS / Kernal on the planet, used by: 2 Billion Smartphones, 100% of the world's top 500 fastest supercomputers, Around 90% of all cloud infrastructure, Smart TVs, routers, smart home gadgets, and even the infotainment systems in most modern cars are powered by embedded Linux.
-            </P>
-          </a>
-
-          <a class="subcard" role="Lesson2" href="../pages/Lessons/Lesson2.html">
-            <h3>
-              Lesson 2 - The Linux Filesystem.
-            </h3>
-            <hr class="Divider">
-            <p class="small-font">
-              Learn the functions, hierarchy and power of the Linux filesystem, and how to navigate, manage and manipulate it from the command line. Learn to find, create, move, copy, delete and edit files and directories.
-            </p>
-          </a>
-
-          <a class="subcard" role="Lesson3" href="../pages/Lessons/Lesson3.html">
-            <h3>
-              Lesson 3 - Working in the Terminal
-            </h3>
-            <hr class="Divider">
-            <p class="small-font">
-              Learn to work faster in the terminal: reuse old commands with history, look up commands with man, search inside files with grep, chain commands together with &amp;&amp;, and cancel a running command with Ctrl+C.
-            </p>
-          </a>
-
-          <a class="subcard" role="Lesson4" href="../pages/Lessons/Lesson4.html">
-            <h3>
-              Lesson 4 - File &amp; Directory Permissions
-            </h3>
-            <hr class="Divider">
-            <p class="small-font">
-              Learn how Linux's multi-user permission system works: reading owner, group and other permissions, and using chmod and chown to control exactly who can read, write and run each file.
-            </p>
-          </a>
-
-          <a class="subcard" role="Lesson5" href="../pages/Lessons/Lesson5.html">
-            <h3>
-              Lesson 5 - Networking Basics
-            </h3>
-            <hr class="Divider">
-            <p class="small-font">
-              Learn how to test connectivity with ping, view your network interfaces with ip addr, trace the route to a host, fetch data with curl, and copy files securely with scp.
-            </p>
-          </a>
-
-          <a class="subcard" role="Lesson6" href="../pages/Lessons/Lesson6.html">
-            <h3>
-              Lesson 6 - Processes
-            </h3>
-            <hr class="Divider">
-            <p class="small-font">
-              Learn what a process is, how to view running processes with ps and top, and how to pause or stop them with Ctrl+Z and kill.
-            </p>
-          </a>
+        <div class="lesson-progress" id="lessonProgress">
+          <div class="lesson-progress-label">
+            <span>Progress</span>
+            <span id="progressValue">0%</span>
+          </div>
+          <div class="lesson-progress-bar">
+            <div id="progressBarFill"></div>
+          </div>
         </div>
 
+        <hr class="Divider">
+        <div class="lesson-content">
+          <section class="lesson-terminal">
+            <h3>Interactive Terminal Sim:</h3>
+            <div id="terminal"></div>
+          </section>
+
+          <div class="lesson-text-col">
+            <section class="lesson-text lesson-section" data-step="1">
+              <h3>Linux and the Network</h3>
+              <p>
+                Most Linux machines don't work in isolation — they're servers,
+                routers, and devices that talk to other computers constantly.
+                Because of this, Linux comes packed with command-line tools for
+                checking, testing, and working with networks.
+              </p>
+              <p>
+                In this lesson you'll learn how to check whether another computer is
+                reachable, look at your own network settings, and move data between
+                machines.
+              </p>
+            </section>
+
+            <section class="lesson-text lesson-section" data-step="2">
+              <h3>Testing Connectivity with ping</h3>
+              <p>
+                <code>ping</code> sends small packets of data to another computer
+                and waits for a reply. It's the quickest way to check whether a
+                host is reachable over the network:
+              </p>
+              <pre><code>ping example.com</code></pre>
+              <p>
+                Each reply line shows how long the round trip took, in
+                milliseconds. If a host stops responding, or the replies are very
+                slow, that usually points to a network problem.
+              </p>
+            </section>
+
+            <section class="lesson-text lesson-section" data-step="3">
+              <h3>Viewing Your Network Interfaces</h3>
+              <p>
+                To see the network interfaces on your own machine, along with their
+                IP addresses, use:
+              </p>
+              <pre><code>ip addr</code></pre>
+              <p>
+                This lists every network interface the computer has, such as
+                <code>lo</code> (the loopback interface, used to talk to itself)
+                and <code>eth0</code> (a typical wired network interface), together
+                with the IP address assigned to each one.
+              </p>
+              <hr class="Divider">
+              <p>
+                To see the path packets take to reach another host, hop by hop,
+                use <code>traceroute</code>:
+              </p>
+              <pre><code>traceroute example.com</code></pre>
+            </section>
+
+            <section class="lesson-text lesson-section" data-step="4">
+              <h3>Fetching and Copying Data</h3>
+              <p>
+                <code>curl</code> fetches data from a URL directly in your terminal.
+                It's often used to test web servers or APIs without opening a
+                browser:
+              </p>
+              <pre><code>curl https://example.com</code></pre>
+              <hr class="Divider">
+              <p>
+                To move files securely between two computers over a network, Linux
+                uses <code>scp</code> ("secure copy"), which works over the same
+                encrypted connection as SSH:
+              </p>
+              <pre><code>scp Documents/notes.txt student@server:/home/student/</code></pre>
+              <hr class="Divider">
+              <p>
+                Between <code>ping</code>, <code>ip addr</code>,
+                <code>traceroute</code>, <code>curl</code> and <code>scp</code>,
+                you now have the basic toolkit for checking connectivity, viewing
+                your own configuration, and moving data across a network.
+              </p>
+            </section>
+
+            <div class="lesson-text-nav">
+              <button type="button" class="btn btn-secondary" id="nextSectionBtn">Next Section</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-controls">
+          <a href="Lesson6.html" class="btn btn-primary" id="nextLessonBtn">Next Lesson &gt;</a>
+        </div>
       </main>
     </div>
-
   </body>
 </html>
-
-
