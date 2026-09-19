@@ -52,8 +52,8 @@ SudoSchool is an interactive, browser-based website for learning the Linux comma
 
 ## Validation
 
-[![Valid HTML5](https://www.w3.org/html/logo/badge/html5-badge-h-css3-semantics.png)](https://validator.w3.org/nu/?doc=file:///home/max/Downloads/LinuxLearnSite-updated/LinuxLearnSite-main/index.html)
-[![Valid CSS!](https://jigsaw.w3.org/css-validator/images/vcss)](https://jigsaw.w3.org/css-validator/validator?uri=file:///home/max/Downloads/LinuxLearnSite-updated/LinuxLearnSite-main/css/style.css)
+[![Valid HTML5](https://www.w3.org/html/logo/badge/html5-badge-h-css3-semantics.png)](https://validator.w3.org/nu/?doc=https%3A%2F%2Fmaxye4655.github.io%2FLinuxLearnSite%2Findex.html)
+[![Valid CSS!](https://jigsaw.w3.org/css-validator/images/vcss)](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fmaxye4655.github.io%2FLinuxLearnSite%2Fcss%2Fstyle.css)
 [![Valid JavaScript](https://img.shields.io/badge/JavaScript-JSHint_validated-brightgreen.svg)](https://jshint.com/)
 
 ## Source

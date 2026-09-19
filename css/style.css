@@ -1325,3 +1325,20 @@ footer {
     align-items: flex-start;
   }
 }
+
+.validation-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.validation-badges a {
+  line-height: 0;
+}
+
+.validation-badges img {
+  max-width: 100%;
+  height: auto;
+}
